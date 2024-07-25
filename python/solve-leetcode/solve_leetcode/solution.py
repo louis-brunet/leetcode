@@ -11,19 +11,23 @@ class Solution(Generic[Input, Output]):
     def solve(self, input: Input) -> Output:
         pass
 
-    def run_tests(self, test_cases: list[tuple[Input, Output]]) -> None: #list[tuple[bool, Output]]:
+    def run_tests(self, test_cases: list[tuple[Input, Output]]) -> None:
         for input, expected_output in test_cases:
             output = self.solve(input)
 
             if output != expected_output:
-                print(f'[FAIL] Input: {input}; Output: {output}; Expected output: {expected_output}')
+                print(
+                    f"[FAIL] Input: {input}; Output: {output}; Expected output: {expected_output}"
+                )
             else:
-                print(f'[PASS] Input: {input}; Output: {output}')
+                print(f"[PASS] Input: {input}; Output: {output}")
 
 
 class Solution0006(Solution[tuple[str, int], str]):
     def solve(self, input: tuple[str, int]) -> str:
         string_to_zigzag, num_rows = input
+        if num_rows == 1:
+            return string_to_zigzag
 
         rows = ["" for _ in range(num_rows)]
         current_row = 0
@@ -43,6 +47,5 @@ class Solution0006(Solution[tuple[str, int], str]):
                 current_row += 1
             else:
                 current_row -= 1
-
 
         return "".join(rows)
