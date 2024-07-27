@@ -1,29 +1,15 @@
-from abc import abstractmethod
-from typing import Generic, TypeVar
-
-
-Input = TypeVar("Input")
-Output = TypeVar("Output")
-
-
-class Solution(Generic[Input, Output]):
-    @abstractmethod
-    def solve(self, input: Input) -> Output:
-        pass
-
-    def run_tests(self, test_cases: list[tuple[Input, Output]]) -> None:
-        for input, expected_output in test_cases:
-            output = self.solve(input)
-
-            if output != expected_output:
-                print(
-                    f"[FAIL] Input: {input}; Output: {output}; Expected output: {expected_output}"
-                )
-            else:
-                print(f"[PASS] Input: {input}; Output: {output}")
+from solution import Solution
 
 
 class Solution0006(Solution[tuple[str, int], str]):
+    def __init__(self) -> None:
+        super().__init__([
+            (("PAYPALISHIRING", 3), "PAHNAPLSIIGYIR"),
+            (("PAYPALISHIRING", 4), "PINALSIGYAHRPI"),
+            (("A", 1), "A"),
+            (("ABC", 1), "ABC"),
+        ])
+
     def solve(self, input: tuple[str, int]) -> str:
         string_to_zigzag, num_rows = input
         if num_rows == 1:
@@ -49,3 +35,4 @@ class Solution0006(Solution[tuple[str, int], str]):
                 current_row -= 1
 
         return "".join(rows)
+

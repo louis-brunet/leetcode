@@ -1,5 +1,6 @@
 from typing import TypeVar
-from solution import Solution0006
+from solution0006 import Solution0006
+from solution0007 import Solution0007
 
 
 Input = TypeVar("Input")
@@ -17,17 +18,13 @@ Output = TypeVar("Output")
 
 
 def main():
-    s = Solution0006()
-    s.run_tests(
-        [
-            (("PAYPALISHIRING", 3), "PAHNAPLSIIGYIR"),
-            (("PAYPALISHIRING", 4), "PINALSIGYAHRPI"),
-            (("A", 1), "A"),
-            (("ABC", 1), "ABC"),
-        ]
-    )
-
-    # raise Exception("TODO")
+    solutions = [
+        Solution0006(),
+        Solution0007()
+    ]
+    for solution in solutions:
+        solution.run_tests()
+        print()
 
 
 if __name__ == "__main__":
