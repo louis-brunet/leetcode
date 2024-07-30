@@ -21,7 +21,7 @@ class Solution(ABC, Generic[Input, Output]):
 
             if output != expected_output:
                 print(
-                    f"[FAIL] {self.__class__.__name__} -- Input: {input}; Output: {output}; Expected output: {expected_output}"
+                    f"[\033[31mFAIL\033[0m] {self.__class__.__name__} -- Input: {input}; Output: {output}; Expected output: {expected_output}"
                 )
             else:
-                print(f"[PASS] {self.__class__.__name__} -- Input: {input}; Output: {output}")
+                print(f"[\033[32mPASS\033[0m] {self.__class__.__name__} -- Input: {input}; Output: {output}")
