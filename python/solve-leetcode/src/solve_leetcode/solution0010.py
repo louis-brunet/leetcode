@@ -104,6 +104,7 @@ def parse_regex(pattern: str) -> RegexSequence:
     pattern_len = len(pattern)
     index = 0
     elements: list[Regex] = []
+    previous_element_repeated_character_star = None
 
     while index < pattern_len:
         pattern_char = pattern[index]
@@ -111,7 +112,9 @@ def parse_regex(pattern: str) -> RegexSequence:
         if pattern_char == "." or pattern_char.isalpha():
             next_char_index = index + 1
             if next_char_index < pattern_len and pattern[next_char_index] == "*":
-                elements.append(RegexStar(RegexCharacter(pattern_char)))
+                if previous_element_repeated_character_star != pattern_char:
+                    elements.append(RegexStar(RegexCharacter(pattern_char)))
+                previous_element_repeated_character_star = pattern_char
 
                 index += 1
                 while (
@@ -122,6 +125,7 @@ def parse_regex(pattern: str) -> RegexSequence:
                     index += 1
             else:
                 elements.append(RegexCharacter(pattern_char))
+                previous_element_repeated_character_star = None
         else:
             raise Exception(
                 "shouldn't happen if * is not first char and input is alphabet char"

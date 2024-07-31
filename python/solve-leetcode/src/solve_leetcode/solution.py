@@ -17,11 +17,12 @@ class Solution(ABC, Generic[Input, Output]):
 
     def run_tests(self) -> None:
         for input, expected_output in self.test_cases:
+            input_str = str(input)
             output = self.solve(input)
 
             if output != expected_output:
                 print(
-                    f"[\033[31mFAIL\033[0m] {self.__class__.__name__} -- Input: {input}; Output: {output}; Expected output: {expected_output}"
+                    f"[\033[31mFAIL\033[0m] {self.__class__.__name__} -- Input: {input_str}; Output: {output}; Expected output: {expected_output}"
                 )
             else:
-                print(f"[\033[32mPASS\033[0m] {self.__class__.__name__} -- Input: {input}; Output: {output}")
+                print(f"[\033[32mPASS\033[0m] {self.__class__.__name__} -- Input: {input_str}; Output: {output}")
